@@ -14,11 +14,7 @@ class Calendrier {
 	static public function affichage($date) {		
 		if (is_string($date)) $date = strtotime($date);  // Si la date est une chaine, on la transforme en timestamp
 		$resultat = '';
-		$resultat .= '<table class="calendrier">';
-		$resultat .= Calendrier::entete($date);
-		$resultat .= Calendrier::corps($date);
-		$resultat .= '</table>';
-		$resultat = Calendrier::marquerJour($resultat, intval(strftime("%d", $date)));
+		//COMPLÉTER
 		return $resultat;
 	}
 	/** Méthode entete
@@ -28,15 +24,8 @@ class Calendrier {
 	 * @uses mois, trouverInitiales, lignesInitiales
 	 */
 	static public function entete($date) {
-		$resultat = '';
-		$resultat .= '<thead>';
-		$resultat .= '<tr class="mois"><th colspan="7">'.Calendrier::mois($date).'</th></tr>';
-		$initiales = Calendrier::trouverInitiales();
-		$resultat .= Calendrier::ligneInitiales($initiales);
-		$resultat .= '</thead>';
-		return $resultat;
 	}
-	/** Méthode mois
+	/** Méthode mois - CETTE MÉTHODE EST COMPLÈTE
 	 * Retourne le contenu de la première cellule de l'entête : Le mois suivi de l'année
 	 * @param integer $date - Le timestamp à gérer
 	 * @return string - Le contenu. Ex.: Mars 2024
@@ -51,7 +40,6 @@ class Calendrier {
 	 * @return integer
 	 */
 	static public function joursEnSecondes($jours) {
-		return $jours*60*60*24;
 	}
 	/** Méthode marquerJour
 	 * Prend un calendrier complet, cherche un certain jour et ajoute à sa cellule 
@@ -61,7 +49,6 @@ class Calendrier {
 	 * @return string - La chaine envoyée modifiée en conséquence.
 	 */
 	static public function marquerJour($str, $jour) {
-		return str_replace('<td>'.$jour.'</td>', '<td class="courant">'.$jour.'</td>', $str);
 	}
 	/** Méthode ligneInitiales
 	 * Retourne la 2e rangée du tableau (<tr>) contenant les initiales des jours
@@ -69,15 +56,8 @@ class Calendrier {
 	 * @return string - Le <tr> final
 	 */
 	static public function ligneInitiales($initiales) {
-		$resultat = '';
-		$resultat .= '<tr class="initiales">';
-		foreach ($initiales as $i) {
-			$resultat .= '<th>'.$i.'</th>';
-		}
-		$resultat .= '</tr>';
-		return $resultat;
 	}
-	/** Méthode trouverInitiales
+	/** Méthode trouverInitiales - CETTE MÉTHODE EST COMPLÈTE
 	 * Retourne un tableau des 7 initiales des jours selon la langue déterminée 
 	 *   par set_locale au début du document
 	 * @return array - Le tableau des initiales
@@ -101,16 +81,7 @@ class Calendrier {
 	static public function corps($date) {
 		$jour = 1;
 		$fin = $jour+intval(date('t', $date)); // Le dernier jour du mois
-		$resultat = '';
-		$resultat .= '<tbody>';
-		$resultat .= Calendrier::rangee(1, $fin, Calendrier::jourDebut($date));
-		$jour += 7-Calendrier::jourDebut($date);
-		while($jour<$fin) {
-			$resultat .= Calendrier::rangee($jour, $fin);
-			$jour += 7;
-		}
-		$resultat .= '</tbody>';
-		return $resultat;
+		//COMPLÉTER
 	}
 	/** Méthode rangee
 	 * Retourne une rangée du <tbody>
@@ -121,22 +92,9 @@ class Calendrier {
 	 * @return string - Une balise <tr> complète
 	 */
 	static public function rangee($debut, $fin, $videsAvant=0) {
-		$resultat = '';
-		$resultat .= '<tr>';
 		// On ajoute les cellules vides avant
-		for ($i=0; $i<$videsAvant; $i++) {
-			$resultat .= '<td>&nbsp;</td>';
-		}
 		// On ajoute les nombres. On fait attention de ne pas dépasser 7 jours
-		for ($i=$debut; $i<$fin && ($i-$debut+$videsAvant) < 7; $i++) {
-			$resultat .= '<td>'.$i.'</td>';
-		}
 		// On ajoute les cases vides après au besoin
-		for ($i=$fin-$debut; $i<7; $i++) {
-			$resultat .= '<td>&nbsp;</td>';
-		}
-		$resultat .= '</tr>';
-		return $resultat;
 	}
 	/** Méthode premierDuMois
 	 * Retourne le timestamp du premier du mois. 0=dim, 6=sam
@@ -146,8 +104,7 @@ class Calendrier {
 	 */
 	static public function premierDuMois($date) {
 		$jours = intval(strftime("%d", $date)); // Le jour courant. Ex.: 24 pour le 24 mars
-		$diff = self::joursEnSecondes($jours-1);
-		return $date-$diff;
+		//COMPLÉTER
 	}
 	/** Méthode jourDebut
 	 * Retourne le jour de la semaine du premier du mois. 0=dim, 6=sam
@@ -156,7 +113,7 @@ class Calendrier {
 	 * @uses premierDuMois
 	 */
 	static public function jourDebut($date) {
-		$premier = Calendrier::premierDuMois($date);
+		//COMPLÉTER
 		return intval(strftime("%w", $premier));
 	}
 }
