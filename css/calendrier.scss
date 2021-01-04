@@ -1,0 +1,31 @@
+body {
+    font-family: arial;
+}
+table.calendrier {
+    background-color: #997;
+    &,
+    td,
+    th {
+        border: 1px solid black;
+        background-color: #ffd;
+    }
+    tr.mois th {
+        font-size: larger;
+    }
+    tr.initiales th {
+        background-color: #997;
+        color: white;
+        font-size: smaller;
+    }
+    tbody td {
+        text-align: center;
+        width: 2em;
+        height: 2em;
+        &.courant {
+            background-color: #f5deb3;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px black;
+        }
+    }
+}
