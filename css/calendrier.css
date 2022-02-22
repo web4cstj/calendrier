@@ -5,34 +5,28 @@ body {
 table.calendrier {
   background-color: #997;
 }
-
 table.calendrier,
 table.calendrier td,
 table.calendrier th {
   border: 1px solid black;
   background-color: #ffd;
 }
-
 table.calendrier tr.mois th {
   font-size: larger;
 }
-
 table.calendrier tr.initiales th {
   background-color: #997;
   color: white;
   font-size: smaller;
 }
-
 table.calendrier tbody td {
   text-align: center;
   width: 2em;
   height: 2em;
 }
-
 table.calendrier tbody td.courant {
   background-color: #f5deb3;
   color: white;
   font-weight: bold;
   text-shadow: 1px 1px 2px black;
-}
-/*# sourceMappingURL=calendrier.css.map */
+}/*# sourceMappingURL=calendrier.css.map */
